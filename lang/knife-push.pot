@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-11 16:45+0000\n"
+"POT-Creation-Date: 2017-10-11 17:38+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -40,23 +40,27 @@ msgstr ""
 msgid "Default push title"
 msgstr ""
 
-#: ../../../../plugins/knife-push/knife-push.php:150
+#: ../../../../plugins/knife-push/knife-push.php:113
+msgid "URL paramaters"
+msgstr ""
+
+#: ../../../../plugins/knife-push/knife-push.php:165
 msgid "Send webpush"
 msgstr ""
 
-#: ../../../../plugins/knife-push/knife-push.php:161
+#: ../../../../plugins/knife-push/knife-push.php:176
 msgid "Something wrong with post id"
 msgstr ""
 
-#: ../../../../plugins/knife-push/knife-push.php:166
+#: ../../../../plugins/knife-push/knife-push.php:181
 msgid "You should fill options on settings page"
 msgstr ""
 
-#: ../../../../plugins/knife-push/knife-push.php:207
+#: ../../../../plugins/knife-push/knife-push.php:224
 msgid "Webpush not sent. Something went wrong"
 msgstr ""
 
-#: ../../../../plugins/knife-push/knife-push.php:211
+#: ../../../../plugins/knife-push/knife-push.php:228
 msgid "Webpush successfully sent"
 msgstr ""
 
@@ -76,7 +80,7 @@ msgstr ""
 msgid "Message"
 msgstr ""
 
-#: ../../../../plugins/knife-push/views/metabox.php:25
+#: ../../../../plugins/knife-push/views/metabox.php:26
 msgid "Send"
 msgstr ""
 

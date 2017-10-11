@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Webpush manage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-11 16:46+0000\n"
-"PO-Revision-Date: 2017-10-11 16:46+0000\n"
+"POT-Creation-Date: 2017-10-11 17:38+0000\n"
+"PO-Revision-Date: 2017-10-11 17:38+0000\n"
 "Last-Translator: Anton Lukin <anton@lukin.me>\n"
 "Language-Team: Russian\n"
 "Language: ru-RU\n"
@@ -14,9 +14,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco - https://localise.biz/"
 
-#: ../../../../plugins/knife-push/knife-push.php:105
-msgid "Default push title"
-msgstr "Заголовок пуша по умолчанию"
+#: ../../../../plugins/knife-push/knife-push.php:113
+msgid "URL paramaters"
+msgstr "Параметры ссылки"
 
 #: ../../../../plugins/knife-push/knife-push.php:59
 #: ../../../../plugins/knife-push/knife-push.php:59
@@ -40,23 +40,27 @@ msgstr "REST API Key"
 msgid "Included Segments"
 msgstr "Сегменты рассылки (через запятую)"
 
-#: ../../../../plugins/knife-push/knife-push.php:150
+#: ../../../../plugins/knife-push/knife-push.php:105
+msgid "Default push title"
+msgstr "Заголовок пуша по умолчанию"
+
+#: ../../../../plugins/knife-push/knife-push.php:165
 msgid "Send webpush"
 msgstr "Отправить пуш"
 
-#: ../../../../plugins/knife-push/knife-push.php:161
+#: ../../../../plugins/knife-push/knife-push.php:176
 msgid "Something wrong with post id"
 msgstr "Неверный ID записи"
 
-#: ../../../../plugins/knife-push/knife-push.php:166
+#: ../../../../plugins/knife-push/knife-push.php:181
 msgid "You should fill options on settings page"
 msgstr "Необходимо заполнить опции на странице настроек"
 
-#: ../../../../plugins/knife-push/knife-push.php:207
+#: ../../../../plugins/knife-push/knife-push.php:224
 msgid "Webpush not sent. Something went wrong"
 msgstr "Пуш не отправлен. Что-то пошло не так"
 
-#: ../../../../plugins/knife-push/knife-push.php:211
+#: ../../../../plugins/knife-push/knife-push.php:228
 msgid "Webpush successfully sent"
 msgstr "Пуш успешно отправлен"
 
@@ -76,7 +80,7 @@ msgstr "Заголовок"
 msgid "Message"
 msgstr "Сообщение"
 
-#: ../../../../plugins/knife-push/views/metabox.php:25
+#: ../../../../plugins/knife-push/views/metabox.php:26
 msgid "Send"
 msgstr "Отправить"
 
