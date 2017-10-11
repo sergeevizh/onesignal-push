@@ -1,6 +1,6 @@
-# Webpush manage #
+# Wordpress plugin for OneSignal API #
 
-Webpush sendig with OneSignal in wordpress
+Webpush sending with OneSignal in wordpress
 
 ### Description ###
 
