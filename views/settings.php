@@ -5,5 +5,5 @@
 		do_settings_sections( 'knife_push' );
 		submit_button();
 		?>
-	</form> 
+	</form>
 </div>

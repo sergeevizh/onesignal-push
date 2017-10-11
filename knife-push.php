@@ -1,7 +1,7 @@
 <?php
 /*
-Plugin Name: [Нож] Управление пушами
-Description: Плагин управления браузерными уведомлениями
+Plugin Name: Webpush manage
+Description: Webpush and popup management plugin
 Author: Anton Lukin
 Author URI: https://lukin.me
 Version: 0.1
@@ -77,7 +77,7 @@ class Knife_Push {
 		);
 
 		add_settings_field(
-			'knife_push_appid',
+			'appid',
 			__( 'OneSignal App ID', 'knife-push' ),
 			[$this, 'setting_render_appid'],
 			'knife_push',
@@ -85,7 +85,7 @@ class Knife_Push {
 		);
 
 		add_settings_field(
-			'knife_push_rest',
+			'rest',
 			__( 'REST API Key', 'knife-push' ),
  			[$this, 'setting_render_rest'],
 			'knife_push',
@@ -93,9 +93,17 @@ class Knife_Push {
 		);
 
 		add_settings_field(
-			'knife_push_segments',
+			'segments',
 			__( 'Included Segments', 'knife-push' ),
  			[$this, 'setting_render_segments'],
+			'knife_push',
+			'knife_push_plugin_section'
+		);
+
+		add_settings_field(
+			'title',
+			__( 'Default push title', 'knife-push' ),
+ 			[$this, 'setting_render_title'],
 			'knife_push',
 			'knife_push_plugin_section'
 		);
@@ -108,7 +116,7 @@ class Knife_Push {
 	public function setting_render_appid() {
 		$options = get_option('knife_push_settings');
 		?>
-		<input type="text" name="knife_push_settings[knife_push_appid]" class="widefat" value="<?php echo $options['knife_push_appid']; ?>">
+		<input type="text" name="knife_push_settings[appid]" class="widefat" value="<?php echo $options['appid']; ?>">
 		<?php
 
 	}
@@ -116,7 +124,7 @@ class Knife_Push {
 	public function setting_render_rest() {
 		$options = get_option('knife_push_settings');
 		?>
-		<input type="text" name="knife_push_settings[knife_push_rest]" class="widefat" value="<?php echo $options['knife_push_rest']; ?>">
+		<input type="text" name="knife_push_settings[rest]" class="widefat" value="<?php echo $options['rest']; ?>">
 		<?php
 	}
 
@@ -124,7 +132,14 @@ class Knife_Push {
 	public function setting_render_segments() {
 		$options = get_option('knife_push_settings');
 		?>
-		<input type="text" name="knife_push_settings[knife_push_segments]" class="widefat" value="<?php echo $options['knife_push_segments']; ?>">
+		<input type="text" name="knife_push_settings[segments]" class="widefat" value="<?php echo $options['segments']; ?>">
+		<?php
+	}
+
+	public function setting_render_title() {
+		$options = get_option('knife_push_settings');
+		?>
+		<input type="text" name="knife_push_settings[title]" class="widefat" value="<?php echo $options['title']; ?>">
 		<?php
 	}
 
@@ -145,15 +160,18 @@ class Knife_Push {
 		if(!is_numeric($id))
 			wp_send_json_error(__("Something wrong with post id", 'knife-push'));
 
-		$options = get_option('knife_push_settings');
+		$opts = get_option('knife_push_settings');
 
-		if(count($options) < 3)
+		if(empty($opts['appid']) || empty($opts['rest']))
 			wp_send_json_error(__("You should fill options on settings page", 'knife-push'));
 
-		$fields = array(
-			'app_id' => $options['knife_push_appid'],
+		if(empty($opts['segments']))
+			$opts['segments'] = 'All';
 
-			'included_segments' => explode(",", $options['knife_push_segments']),
+		$fields = array(
+			'app_id' => $opts['appid'],
+
+			'included_segments' => explode(",", $opts['segments']),
 
 			'contents' => [
 				'en' => $_POST['message']
@@ -167,8 +185,8 @@ class Knife_Push {
 		);
 
 		$header = [
-			'Content-Type: application/json; charset=utf-8', 
-			'Authorization: Basic ' . $options['knife_push_rest']
+			'Content-Type: application/json; charset=utf-8',
+			'Authorization: Basic ' . $opts['rest']
 		];
 
 		$ch = curl_init();

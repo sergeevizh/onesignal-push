@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-11 12:53+0000\n"
+"POT-Creation-Date: 2017-10-11 16:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -14,58 +14,78 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco - https://localise.biz/"
 
-#: ../../../../plugins/knife-push/knife-push.php:52
-#: ../../../../plugins/knife-push/knife-push.php:52
-#: ../../../../plugins/knife-push/knife-push.php:67
+#: ../../../../plugins/knife-push/knife-push.php:59
+#: ../../../../plugins/knife-push/knife-push.php:59
+#: ../../../../plugins/knife-push/knife-push.php:74
 msgid "Push settings"
 msgstr ""
 
-#: ../../../../plugins/knife-push/knife-push.php:57
+#: ../../../../plugins/knife-push/knife-push.php:64
 msgid "Settings"
 msgstr ""
 
-#: ../../../../plugins/knife-push/knife-push.php:74
+#: ../../../../plugins/knife-push/knife-push.php:81
 msgid "OneSignal App ID"
 msgstr ""
 
-#: ../../../../plugins/knife-push/knife-push.php:82
+#: ../../../../plugins/knife-push/knife-push.php:89
 msgid "REST API Key"
 msgstr ""
 
-#: ../../../../plugins/knife-push/knife-push.php:90
+#: ../../../../plugins/knife-push/knife-push.php:97
 msgid "Included Segments"
 msgstr ""
 
-#: ../../../../plugins/knife-push/knife-push.php:128
+#: ../../../../plugins/knife-push/knife-push.php:105
+msgid "Default push title"
+msgstr ""
+
+#: ../../../../plugins/knife-push/knife-push.php:150
 msgid "Send webpush"
 msgstr ""
 
+#: ../../../../plugins/knife-push/knife-push.php:161
+msgid "Something wrong with post id"
+msgstr ""
+
 #: ../../../../plugins/knife-push/knife-push.php:166
-msgid "Successfully sent"
+msgid "You should fill options on settings page"
+msgstr ""
+
+#: ../../../../plugins/knife-push/knife-push.php:207
+msgid "Webpush not sent. Something went wrong"
+msgstr ""
+
+#: ../../../../plugins/knife-push/knife-push.php:211
+msgid "Webpush successfully sent"
 msgstr ""
 
 #: ../../../../plugins/knife-push/views/metabox.php:6
-msgid "Push for this post already sent"
+msgid "New article"
 msgstr ""
 
-#: ../../../../plugins/knife-push/views/metabox.php:15
+#: ../../../../plugins/knife-push/views/metabox.php:11
+msgid "<strong>Note:</strong> Push for this post already sent"
+msgstr ""
+
+#: ../../../../plugins/knife-push/views/metabox.php:16
 msgid "Title"
 msgstr ""
 
-#: ../../../../plugins/knife-push/views/metabox.php:20
+#: ../../../../plugins/knife-push/views/metabox.php:21
 msgid "Message"
 msgstr ""
 
-#: ../../../../plugins/knife-push/views/metabox.php:24
+#: ../../../../plugins/knife-push/views/metabox.php:25
 msgid "Send"
 msgstr ""
 
 #. Name of the plugin
-msgid "[Нож] Управление пушами"
+msgid "Webpush manage"
 msgstr ""
 
 #. Description of the plugin
-msgid "Плагин управления браузерными уведомлениями"
+msgid "Webpush and popup management plugin"
 msgstr ""
 
 #. Author of the plugin
