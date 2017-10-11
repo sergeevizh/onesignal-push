@@ -140,36 +140,56 @@ class Knife_Push {
 	}
 
 	public function ajax_push() {
+		$id = $_POST['post'];
+
+		if(!is_numeric($id))
+			wp_send_json_error(__("Something wrong with post id", 'knife-push'));
+
 		$options = get_option('knife_push_settings');
 
-		$content = [
-			'en' => $_POST['message']
-		];
+		if(count($options) < 3)
+			wp_send_json_error(__("You should fill options on settings page", 'knife-push'));
 
 		$fields = array(
 			'app_id' => $options['knife_push_appid'],
-			'included_segments' => array($options['knife_push_segments']),
-			'contents' => $content
+
+			'included_segments' => explode(",", $options['knife_push_segments']),
+
+			'contents' => [
+				'en' => $_POST['message']
+			],
+
+			'headings' => [
+				'en' => $_POST['title']
+			],
+
+			'url' => get_permalink($id)
 		);
 
-		$fields = json_encode($fields);
+		$header = [
+			'Content-Type: application/json; charset=utf-8', 
+			'Authorization: Basic ' . $options['knife_push_rest']
+		];
 
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, "https://onesignal.com/api/v1/notifications");
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json; charset=utf-8',
-											   'Authorization: Basic ' . $options['knife_push_rest']));
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 		curl_setopt($ch, CURLOPT_HEADER, FALSE);
 		curl_setopt($ch, CURLOPT_POST, TRUE);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
 
 		$response = curl_exec($ch);
 		curl_close($ch);
 
-		print_r($response);
-		die;
+        $answer = json_decode($response);
 
-		wp_send_json_success(__('Successfully sent', 'knife-push'));
+		if(!isset($answer->id))
+			wp_send_json_error(__("Webpush not sent. Something went wrong", 'knife-push'));
+
+		update_post_meta($id, 'knife-push', $answer->id);
+
+		wp_send_json_success(__("Webpush successfully sent", 'knife-push'));
 	}
 }

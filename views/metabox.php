@@ -3,17 +3,13 @@
 
 	<?php if(!empty($push)) : ?>
 	<p class="howto">
-		<strong>Note: </strong><span><?php _e('Push for this post already sent', 'knife-push') ?></span>
+		<?php _e('<strong>Note:</strong> Push for this post already sent', 'knife-push') ?>
 	</p>   
 	<?php endif; ?>
 
-	<p>
-		<span id="knife-push-status"></span>
-	</p>
-
  	<p>
 		<label for="knife-push-title"><strong><?php _e('Title', 'knife-push') ?></strong></label>
-		<input id="knife-push-title" class="widefat" value="Новый материал на Ноже">
+		<input id="knife-push-title" class="widefat" value="<?php _e('New article', 'knife-push') ?>">
 	</p>
 
 	<p>
@@ -21,7 +17,7 @@
 		<textarea id="knife-push-message" class="widefat" rows="4"><?php echo get_the_title() ?></textarea>
 	</p>
 
-	<a id="knife-push-send" href="#push-push" class="button"><?php _e('Send', 'knife-push') ?></a>
+	<a id="knife-push-send" href="#push-send" class="button"><?php _e('Send', 'knife-push') ?></a>
 	<span class="spinner"></span>
 </div>
 
@@ -36,6 +32,7 @@
 
 		box.on('click', '#knife-push-send', function(e) {
 			e.preventDefault();
+			box.find(".notice").remove();
 
 			var data = {
 				action: 'knife_push',
@@ -49,9 +46,16 @@
 			xhr.done(function(answer) {
 				wait();
 
-//				if(answer.success === true)
-					
-				return box.find('#knife-push-status').text(answer.data)
+				var status = $('<div />', {
+					"class": "notice", 
+					"html": "<p>" + answer.data + "</p>",
+					"css": {"background-color": "#f4f4f4"}
+				});
+
+				if(answer.success === true)
+					return status.prependTo(box).addClass('notice-success'); 
+				
+				return status.prependTo(box).addClass('notice-error');
 			});    
 
 			return wait();
