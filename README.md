@@ -12,8 +12,8 @@
 1. Загрузите папку `knife-push` в директорию `/wp-content/plugins/`
 2. Активируйте плагин в панели администратора
 3. Обновите или добавьте manifest.json в соотвествии с настройками OneSignal
-4. Перенесите файлы из папки sdk в корень, либо настройте правила nginx по следующему принципу
-5. Добавьте ключи в настройках плагина `/wp-admin/options-general.php?page=knife-push`
+4. Добавьте ключи в настройках плагина `/wp-admin/options-general.php?page=knife-push`
+5. Перенесите файлы из папки sdk в корень проекта, либо настройте правила nginx по следующему принципу
 
 ```
 location = /OneSignalSDKUpdaterWorker.js {
@@ -28,4 +28,5 @@ location = /OneSignalSDKWorker.js {
 ### Дополительная помощь ###
 
 Задайте свой вопрос через форму на Github
+
 https://github.com/antonlukin/knife-push/issues

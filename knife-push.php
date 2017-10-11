@@ -136,7 +136,7 @@ class Knife_Push {
 		$options = get_option('knife_push_settings'); 
 
 		$content = [
-			'en' => $_POST['title']
+			'en' => $_POST['message']
 		];
 
 		$fields = array(
