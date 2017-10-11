@@ -13,12 +13,12 @@
 
  	<p>
 		<label for="knife-push-title"><strong><?php _e('Title', 'knife-push') ?></strong></label>
-		<input id="knife-push-title" class="widefat" value="<?php echo get_the_title() ?>">
+		<input id="knife-push-title" class="widefat" value="Новый материал на Ноже">
 	</p>
 
 	<p>
-		<label for="knife-push-description"><strong><?php _e('Message', 'knife-push') ?></strong></label>      
-		<textarea id="knife-push-description" class="widefat" rows="4"></textarea>
+		<label for="knife-push-message"><strong><?php _e('Message', 'knife-push') ?></strong></label>      
+		<textarea id="knife-push-message" class="widefat" rows="4"><?php echo get_the_title() ?></textarea>
 	</p>
 
 	<a id="knife-push-send" href="#push-push" class="button"><?php _e('Send', 'knife-push') ?></a>
@@ -41,7 +41,7 @@
 				action: 'knife_push',
 				post: box.data('post'),
 				title: box.find('#knife-push-title').val(),
-				description: box.find('#knife-push-description').val()
+				message: box.find('#knife-push-message').val()
 			}
 
 			var xhr = $.ajax({method: 'POST', url: box.data('ajaxurl'), data: data}, 'json');
