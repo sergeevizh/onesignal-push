@@ -107,6 +107,14 @@ class Knife_Push {
 			'knife_push',
 			'knife_push_plugin_section'
 		);
+
+ 		add_settings_field(
+			'utm',
+			__( 'URL paramaters', 'knife-push' ),
+ 			[$this, 'setting_render_utm'],
+			'knife_push',
+			'knife_push_plugin_section'
+		);
 	}
 
 	public function options_page() {
@@ -132,14 +140,21 @@ class Knife_Push {
 	public function setting_render_segments() {
 		$options = get_option('knife_push_settings');
 		?>
-		<input type="text" name="knife_push_settings[segments]" class="widefat" value="<?php echo $options['segments']; ?>">
+		<input type="text" name="knife_push_settings[segments]" placeholder="All" class="widefat" value="<?php echo $options['segments']; ?>">
 		<?php
 	}
 
 	public function setting_render_title() {
 		$options = get_option('knife_push_settings');
 		?>
-		<input type="text" name="knife_push_settings[title]" class="widefat" value="<?php echo $options['title']; ?>">
+		<input type="text" name="knife_push_settings[title]" placeholder="My best site" class="widefat" value="<?php echo $options['title']; ?>">
+		<?php
+	}
+
+ 	public function setting_render_utm() {
+		$options = get_option('knife_push_settings');
+		?>
+		<input type="text" name="knife_push_settings[utm]" placeholder="utm_source=site&utm_medium=webpush" class="widefat" value="<?php echo $options['utm']; ?>">
 		<?php
 	}
 
@@ -168,6 +183,8 @@ class Knife_Push {
 		if(empty($opts['segments']))
 			$opts['segments'] = 'All';
 
+		parse_str($opts['utm'], $args);
+
 		$fields = array(
 			'app_id' => $opts['appid'],
 
@@ -181,7 +198,7 @@ class Knife_Push {
 				'en' => $_POST['title']
 			],
 
-			'url' => get_permalink($id)
+			'url' => add_query_arg($args, get_permalink($id))
 		);
 
 		$header = [
