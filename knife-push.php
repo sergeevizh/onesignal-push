@@ -8,6 +8,10 @@ Version: 0.1
 Text Domain: knife-push
 */
 
+if (!defined('WPINC')) {
+	die;
+}
+
 new Knife_Push;
 
 class Knife_Push {
@@ -218,7 +222,7 @@ class Knife_Push {
 		$response = curl_exec($ch);
 		curl_close($ch);
 
-        $answer = json_decode($response);
+		$answer = json_decode($response);
 
 		if(!isset($answer->id))
 			wp_send_json_error(__("Webpush not sent. Something went wrong", 'knife-push'));
