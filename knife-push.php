@@ -16,9 +16,6 @@ new Knife_Push;
 
 class Knife_Push {
 	function __construct() {
-		if($_SERVER['REMOTE_ADDR'] !== '176.14.209.11')
-			return false;
-
 		add_action('init', [$this, 'init']);
 
 		add_action('admin_init', [$this, 'admin_init']);
