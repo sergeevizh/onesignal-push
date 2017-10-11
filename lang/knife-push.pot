@@ -1,0 +1,77 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-10-11 12:53+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco - https://localise.biz/"
+
+#: ../../../../plugins/knife-push/knife-push.php:52
+#: ../../../../plugins/knife-push/knife-push.php:52
+#: ../../../../plugins/knife-push/knife-push.php:67
+msgid "Push settings"
+msgstr ""
+
+#: ../../../../plugins/knife-push/knife-push.php:57
+msgid "Settings"
+msgstr ""
+
+#: ../../../../plugins/knife-push/knife-push.php:74
+msgid "OneSignal App ID"
+msgstr ""
+
+#: ../../../../plugins/knife-push/knife-push.php:82
+msgid "REST API Key"
+msgstr ""
+
+#: ../../../../plugins/knife-push/knife-push.php:90
+msgid "Included Segments"
+msgstr ""
+
+#: ../../../../plugins/knife-push/knife-push.php:128
+msgid "Send webpush"
+msgstr ""
+
+#: ../../../../plugins/knife-push/knife-push.php:166
+msgid "Successfully sent"
+msgstr ""
+
+#: ../../../../plugins/knife-push/views/metabox.php:6
+msgid "Push for this post already sent"
+msgstr ""
+
+#: ../../../../plugins/knife-push/views/metabox.php:15
+msgid "Title"
+msgstr ""
+
+#: ../../../../plugins/knife-push/views/metabox.php:20
+msgid "Message"
+msgstr ""
+
+#: ../../../../plugins/knife-push/views/metabox.php:24
+msgid "Send"
+msgstr ""
+
+#. Name of the plugin
+msgid "[Нож] Управление пушами"
+msgstr ""
+
+#. Description of the plugin
+msgid "Плагин управления браузерными уведомлениями"
+msgstr ""
+
+#. Author of the plugin
+msgid "Anton Lukin"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://lukin.me"
+msgstr ""

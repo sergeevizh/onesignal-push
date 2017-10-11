@@ -1,0 +1,77 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: [Нож] Управление пушами\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-10-11 12:53+0000\n"
+"PO-Revision-Date: 2017-10-11 13:07+0000\n"
+"Last-Translator: Anton Lukin <anton@lukin.me>\n"
+"Language-Team: Russian\n"
+"Language: ru-RU\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10 >= 2 && "
+"n%10<=4 &&(n%100<10||n%100 >= 20)? 1 : 2)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco - https://localise.biz/"
+
+#: ../../../../plugins/knife-push/knife-push.php:52
+#: ../../../../plugins/knife-push/knife-push.php:52
+#: ../../../../plugins/knife-push/knife-push.php:67
+msgid "Push settings"
+msgstr "Настройки пушей"
+
+#: ../../../../plugins/knife-push/knife-push.php:57
+msgid "Settings"
+msgstr "Настройки"
+
+#: ../../../../plugins/knife-push/knife-push.php:74
+msgid "OneSignal App ID"
+msgstr "OneSignal App ID"
+
+#: ../../../../plugins/knife-push/knife-push.php:82
+msgid "REST API Key"
+msgstr "REST API Key"
+
+#: ../../../../plugins/knife-push/knife-push.php:90
+msgid "Included Segments"
+msgstr "Включенные сегменты"
+
+#: ../../../../plugins/knife-push/knife-push.php:128
+msgid "Send webpush"
+msgstr "Отправить пуш"
+
+#: ../../../../plugins/knife-push/knife-push.php:166
+msgid "Successfully sent"
+msgstr "Пуш успешно отправлен"
+
+#: ../../../../plugins/knife-push/views/metabox.php:6
+msgid "Push for this post already sent"
+msgstr "Пуш для этой записи уже был отправлен"
+
+#: ../../../../plugins/knife-push/views/metabox.php:15
+msgid "Title"
+msgstr "Заголовок"
+
+#: ../../../../plugins/knife-push/views/metabox.php:20
+msgid "Message"
+msgstr "Сообщение"
+
+#: ../../../../plugins/knife-push/views/metabox.php:24
+msgid "Send"
+msgstr "Отправить"
+
+#. Name of the plugin
+msgid "[Нож] Управление пушами"
+msgstr "[Нож] Управление пушами"
+
+#. Description of the plugin
+msgid "Плагин управления браузерными уведомлениями"
+msgstr "Плагин управления браузерными уведомлениями"
+
+#. Author of the plugin
+msgid "Anton Lukin"
+msgstr "Anton Lukin"
+
+#. Author URI of the plugin
+msgid "https://lukin.me"
+msgstr "https://lukin.me"

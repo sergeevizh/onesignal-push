@@ -5,11 +5,12 @@ Description: Плагин управления браузерными уведо
 Author: Anton Lukin
 Author URI: https://lukin.me
 Version: 0.1
+Text Domain: knife-push
 */
 
 new Knife_Push;
 
-class Knife_Push {   
+class Knife_Push {
 	function __construct() {
 		if($_SERVER['REMOTE_ADDR'] !== '176.14.209.11')
 			return false;
@@ -18,26 +19,32 @@ class Knife_Push {
 
 		add_action('admin_init', [$this, 'admin_init']);
 		add_action('admin_menu', [$this, 'add_menu']);
- 		add_action('admin_menu', [$this, 'settings_init']); 
+ 		add_action('admin_menu', [$this, 'settings_init']);
+
+		add_action('plugins_loaded', [$this, 'plugin_textdomain']);
 	}
 
 	public function init() {
 		add_action('wp_enqueue_scripts', [$this, 'enqueue_scripts']);
 		add_filter('script_loader_tag', [$this, 'loader_tag'], 10, 2);
-		add_action('wp_footer', [$this, 'footer']);   
+		add_action('wp_footer', [$this, 'footer']);
 	}
 
  	public function admin_init() {
-		add_action('add_meta_boxes', [$this, 'add_metabox']);  
+		add_action('add_meta_boxes', [$this, 'add_metabox']);
 		add_action('wp_ajax_knife_push', [$this, 'ajax_push']);
- 		add_filter('plugin_row_meta', [$this, 'plugin_row'], 10, 4); 
-	}  
+ 		add_filter('plugin_row_meta', [$this, 'plugin_row'], 10, 4);
+	}
+
+	public function plugin_textdomain() {
+		load_plugin_textdomain('knife-push', FALSE, basename(__DIR__) . '/lang/');
+	}
 
 	public function enqueue_scripts() {
 		wp_enqueue_script('onesignal-sdk', 'https://cdn.onesignal.com/sdks/OneSignalSDK.js');
 	}
 
-	public function loader_tag($tag, $handle) {    
+	public function loader_tag($tag, $handle) {
 		if('onesignal-sdk' !== $handle)
 			return $tag;
 
@@ -45,7 +52,7 @@ class Knife_Push {
 	}
 
 	public function footer() {
- 		include(plugin_dir_path(__FILE__) . "views/footer.php"); 
+ 		include(plugin_dir_path(__FILE__) . "views/footer.php");
 	}
 
 	public function add_menu() {
@@ -56,49 +63,49 @@ class Knife_Push {
 		if (plugin_basename(__FILE__) == $plugin_file)
 			$plugin_meta[] = '<a href="' . admin_url('options-general.php?page=knife-push') . '">' . __('Settings', 'knife-push'). '</a>';
 
-		return $plugin_meta;      
+		return $plugin_meta;
 	}
 
 	public function settings_init() {
 		register_setting( 'knife_push', 'knife_push_settings' );
 
 		add_settings_section(
-			'knife_push_plugin_section', 
-			__( 'Push settings', 'knife-push' ), 
-			[], 
+			'knife_push_plugin_section',
+			__( 'Push settings', 'knife-push' ),
+			[],
 			'knife_push'
 		);
 
-		add_settings_field( 
-			'knife_push_appid', 
-			__( 'OneSignal App ID', 'knife-push' ), 
-			[$this, 'setting_render_appid'], 
-			'knife_push', 
-			'knife_push_plugin_section' 
+		add_settings_field(
+			'knife_push_appid',
+			__( 'OneSignal App ID', 'knife-push' ),
+			[$this, 'setting_render_appid'],
+			'knife_push',
+			'knife_push_plugin_section'
 		);
 
-		add_settings_field( 
-			'knife_push_rest', 
-			__( 'REST API Key', 'knife-push' ), 
- 			[$this, 'setting_render_rest'],   
-			'knife_push', 
-			'knife_push_plugin_section' 
+		add_settings_field(
+			'knife_push_rest',
+			__( 'REST API Key', 'knife-push' ),
+ 			[$this, 'setting_render_rest'],
+			'knife_push',
+			'knife_push_plugin_section'
 		);
 
-		add_settings_field( 
-			'knife_push_segments', 
-			__( 'Included Segments', 'knife-push' ), 
- 			[$this, 'setting_render_segments'],  
-			'knife_push', 
-			'knife_push_plugin_section' 
+		add_settings_field(
+			'knife_push_segments',
+			__( 'Included Segments', 'knife-push' ),
+ 			[$this, 'setting_render_segments'],
+			'knife_push',
+			'knife_push_plugin_section'
 		);
 	}
 
 	public function options_page() {
-  		include(plugin_dir_path(__FILE__) . "views/settings.php");   
+  		include(plugin_dir_path(__FILE__) . "views/settings.php");
 	}
 
-	public function setting_render_appid() { 
+	public function setting_render_appid() {
 		$options = get_option('knife_push_settings');
 		?>
 		<input type="text" name="knife_push_settings[knife_push_appid]" class="widefat" value="<?php echo $options['knife_push_appid']; ?>">
@@ -106,7 +113,7 @@ class Knife_Push {
 
 	}
 
-	public function setting_render_rest() { 
+	public function setting_render_rest() {
 		$options = get_option('knife_push_settings');
 		?>
 		<input type="text" name="knife_push_settings[knife_push_rest]" class="widefat" value="<?php echo $options['knife_push_rest']; ?>">
@@ -114,7 +121,7 @@ class Knife_Push {
 	}
 
 
-	public function setting_render_segments() { 
+	public function setting_render_segments() {
 		$options = get_option('knife_push_settings');
 		?>
 		<input type="text" name="knife_push_settings[knife_push_segments]" class="widefat" value="<?php echo $options['knife_push_segments']; ?>">
@@ -125,15 +132,15 @@ class Knife_Push {
 		if(!current_user_can('edit_pages'))
 			return false;
 
-		add_meta_box('knife-push', __('Send webpush', 'knife-push'), [$this, 'display_metabox'], 'post', 'side', 'low'); 
+		add_meta_box('knife-push', __('Send webpush', 'knife-push'), [$this, 'display_metabox'], 'post', 'side', 'low');
 	}
 
 	public function display_metabox() {
-		include(plugin_dir_path(__FILE__) . "views/metabox.php");  
+		include(plugin_dir_path(__FILE__) . "views/metabox.php");
 	}
 
 	public function ajax_push() {
-		$options = get_option('knife_push_settings'); 
+		$options = get_option('knife_push_settings');
 
 		$content = [
 			'en' => $_POST['title']
@@ -144,7 +151,7 @@ class Knife_Push {
 			'included_segments' => array($options['knife_push_segments']),
 			'contents' => $content
 		);
-		
+
 		$fields = json_encode($fields);
 
 		$ch = curl_init();
@@ -158,10 +165,10 @@ class Knife_Push {
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
 
 		$response = curl_exec($ch);
-		curl_close($ch);               
+		curl_close($ch);
 
 		print_r($response);
-		die;                  
+		die;
 
 		wp_send_json_success(__('Successfully sent', 'knife-push'));
 	}
