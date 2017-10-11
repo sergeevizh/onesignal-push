@@ -1,4 +1,4 @@
- <div id="knife-push-box" data-ajaxurl="<?php echo admin_url('admin-ajax.php') ?>" data-post="<?php echo get_the_ID() ?>">
+ <div id="knife-push-box" data-ajaxurl="<?php echo admin_url('admin-ajax.php') ?>" data-post="<?php echo get_the_ID() ?>" style="margin-bottom: -10px;">
 	<?php
 		$opts = get_option('knife_push_settings');
 		$push = get_post_meta(get_the_ID(), 'knife-push', true);
@@ -22,8 +22,10 @@
 		<textarea id="knife-push-message" class="widefat" rows="4"><?php echo get_the_title() ?></textarea>
 	</p>
 
-	<a id="knife-push-send" href="#push-send" class="button"><?php _e('Send', 'knife-push') ?></a>
-	<span class="spinner"></span>
+	<p>
+		<a id="knife-push-send" href="#push-send" class="button"><?php _e('Send', 'knife-push') ?></a>
+		<span class="spinner"></span>
+	</p>
 </div>
 
 <script>
@@ -31,13 +33,18 @@
 		var box = $("#knife-push-box");
 
 		var wait = function() {
-			box.find('.button').toggleClass('disabled');
+			box.find('.button')
+				.toggleClass('disabled')
+				.prop('disabled', function(i, v) {return !v});
+
 			box.find('.spinner').toggleClass('is-active');
 		}
 
 		box.on('click', '#knife-push-send', function(e) {
 			e.preventDefault();
 			box.find(".notice").remove();
+
+			var send = $(this).parent();
 
 			var data = {
 				action: 'knife_push',
@@ -54,13 +61,15 @@
 				var status = $('<div />', {
 					"class": "notice",
 					"html": "<p>" + answer.data + "</p>",
-					"css": {"background-color": "#f4f4f4"}
+					"css": {"background-color": "#f4f4f4", "margin-top": "15px"}
 				});
 
-				if(answer.success === true)
-					return status.prependTo(box).addClass('notice-success');
+				if(answer.success !== true)
+					return status.prependTo(box).addClass('notice-error');
 
-				return status.prependTo(box).addClass('notice-error');
+				send.hide();
+
+				return status.prependTo(box).addClass('notice-success');
 			});
 
 			return wait();
