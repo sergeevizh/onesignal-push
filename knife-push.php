@@ -16,6 +16,9 @@ new Knife_Push;
 
 class Knife_Push {
 	function __construct() {
+		if($_SERVER['REMOTE_ADDR'] !== '176.14.209.11')
+			return false;
+
 		add_action('init', [$this, 'init']);
 
 		add_action('admin_init', [$this, 'admin_init']);
@@ -26,7 +29,8 @@ class Knife_Push {
 	}
 
 	public function init() {
-		add_action('wp_enqueue_scripts', [$this, 'enqueue_scripts']);
+		add_action('wp_enqueue_scripts', [$this, 'enqueue_script']);
+		add_action('wp_enqueue_scripts', [$this, 'enqueue_style']);
 		add_filter('script_loader_tag', [$this, 'loader_tag'], 10, 2);
 		add_action('wp_footer', [$this, 'footer']);
 	}
@@ -41,8 +45,16 @@ class Knife_Push {
 		load_plugin_textdomain('knife-push', FALSE, basename(__DIR__) . '/lang/');
 	}
 
-	public function enqueue_scripts() {
+	public function enqueue_script() {
 		wp_enqueue_script('onesignal-sdk', 'https://cdn.onesignal.com/sdks/OneSignalSDK.js');
+	}
+
+ 	public function enqueue_style() {
+		$default_style = apply_filters('knife-push_enqueue_style', true);
+
+		if($default_style === true) {
+			wp_enqueue_style('knife-push', plugins_url("assets/knife-styles.css", __FILE__), [], null);
+		}
 	}
 
 	public function loader_tag($tag, $handle) {
@@ -53,7 +65,12 @@ class Knife_Push {
 	}
 
 	public function footer() {
- 		include(plugin_dir_path(__FILE__) . "views/footer.php");
+    	$template = apply_filters('knife-push_footer', plugin_dir_path(__FILE__) . "views/footer.php");
+
+		$promo_text = apply_filters('knife-push_footer_promo', __('We want to notify you for the lastest updates', 'knife-push'));
+		$button_text = apply_filters('knife-push_footer_button', __('Subscribe', 'knife-push'));
+
+ 		include($template);
 	}
 
 	public function add_menu() {
