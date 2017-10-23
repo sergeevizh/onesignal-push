@@ -34,6 +34,11 @@ class Knife_Push {
 	}
 
  	public function admin_init() {
+		$user_role = apply_filters('knife-push_user_role', 'edit_others_posts');
+
+		if(!current_user_can($user_role))
+			return false;
+
 		add_action('add_meta_boxes', [$this, 'add_metabox']);
 		add_action('wp_ajax_knife_push', [$this, 'ajax_push']);
  		add_filter('plugin_row_meta', [$this, 'plugin_row'], 10, 4);
@@ -179,11 +184,6 @@ class Knife_Push {
 	}
 
 	public function add_metabox() {
-		$user_role = apply_filters('knife-push_user_role', 'edit_others_posts');
-
-		if(!current_user_can($user_role))
-			return false;
-
 		add_meta_box('knife-push', __('Send webpush', 'knife-push'), [$this, 'display_metabox'], 'post', 'side', 'low');
 	}
 
