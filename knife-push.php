@@ -179,7 +179,9 @@ class Knife_Push {
 	}
 
 	public function add_metabox() {
-		if(!current_user_can('edit_pages'))
+		$user_role = apply_filters('knife-push_user_role', 'edit_others_posts');
+
+		if(!current_user_can($user_role))
 			return false;
 
 		add_meta_box('knife-push', __('Send webpush', 'knife-push'), [$this, 'display_metabox'], 'post', 'side', 'low');
