@@ -1,7 +1,7 @@
 <?php
 /*
-Plugin Name: Webpush manage
-Description: Webpush and popup management plugin
+Plugin Name: [Knife] Push notifications
+Description: Push notifications and popup management plugin
 Author: Anton Lukin
 Author URI: https://lukin.me
 Version: 0.1
