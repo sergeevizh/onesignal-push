@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Webpush manage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-12 22:40+0000\n"
-"PO-Revision-Date: 2017-10-12 22:41+0000\n"
+"POT-Creation-Date: 2017-11-26 11:52+0000\n"
+"PO-Revision-Date: 2017-11-26 11:53+0000\n"
 "Last-Translator: Anton Lukin <anton@lukin.me>\n"
 "Language-Team: Russian\n"
 "Language: ru-RU\n"
@@ -14,61 +14,69 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco - https://localise.biz/"
 
-#: ../../../../plugins/knife-push/knife-push.php:70
+#. Name of the plugin
+msgid "[Knife] Push notifications"
+msgstr "[НОЖ] Веб-пуш уведомления"
+
+#. Description of the plugin
+msgid "Push notifications and popup management plugin"
+msgstr "Управление рассылкой веб-пуш уведомлений"
+
+#: ../../../../plugins/knife-push/knife-push.php:83
 msgid "We want to notify you for the lastest updates"
 msgstr "Получать последние обновления сайта"
 
-#: ../../../../plugins/knife-push/knife-push.php:71
+#: ../../../../plugins/knife-push/knife-push.php:84
 msgid "Subscribe"
 msgstr "Подписаться"
 
-#: ../../../../plugins/knife-push/knife-push.php:77
-#: ../../../../plugins/knife-push/knife-push.php:77
 #: ../../../../plugins/knife-push/knife-push.php:92
+#: ../../../../plugins/knife-push/knife-push.php:92
+#: ../../../../plugins/knife-push/knife-push.php:107
 msgid "Push settings"
 msgstr "Настройки пушей"
 
-#: ../../../../plugins/knife-push/knife-push.php:82
+#: ../../../../plugins/knife-push/knife-push.php:97
 msgid "Settings"
 msgstr "Настройки"
 
-#: ../../../../plugins/knife-push/knife-push.php:99
+#: ../../../../plugins/knife-push/knife-push.php:114
 msgid "OneSignal App ID"
 msgstr "OneSignal App ID"
 
-#: ../../../../plugins/knife-push/knife-push.php:107
+#: ../../../../plugins/knife-push/knife-push.php:122
 msgid "REST API Key"
 msgstr "REST API Key"
 
-#: ../../../../plugins/knife-push/knife-push.php:115
+#: ../../../../plugins/knife-push/knife-push.php:130
 msgid "Included Segments"
 msgstr "Сегменты рассылки (через запятую)"
 
-#: ../../../../plugins/knife-push/knife-push.php:123
+#: ../../../../plugins/knife-push/knife-push.php:138
 msgid "Default push title"
 msgstr "Заголовок пуша по умолчанию"
 
-#: ../../../../plugins/knife-push/knife-push.php:131
+#: ../../../../plugins/knife-push/knife-push.php:146
 msgid "URL paramaters"
 msgstr "Параметры ссылки"
 
-#: ../../../../plugins/knife-push/knife-push.php:183
+#: ../../../../plugins/knife-push/knife-push.php:200
 msgid "Send webpush"
 msgstr "Отправить пуш"
 
-#: ../../../../plugins/knife-push/knife-push.php:194
+#: ../../../../plugins/knife-push/knife-push.php:211
 msgid "Something wrong with post id"
 msgstr "Неверный ID записи"
 
-#: ../../../../plugins/knife-push/knife-push.php:199
+#: ../../../../plugins/knife-push/knife-push.php:216
 msgid "You should fill options on settings page"
 msgstr "Необходимо заполнить опции на странице настроек"
 
-#: ../../../../plugins/knife-push/knife-push.php:242
+#: ../../../../plugins/knife-push/knife-push.php:259
 msgid "Webpush not sent. Something went wrong"
 msgstr "Пуш не отправлен. Что-то пошло не так"
 
-#: ../../../../plugins/knife-push/knife-push.php:246
+#: ../../../../plugins/knife-push/knife-push.php:263
 msgid "Webpush successfully sent"
 msgstr "Пуш успешно отправлен"
 
@@ -91,14 +99,6 @@ msgstr "Сообщение"
 #: ../../../../plugins/knife-push/views/metabox.php:26
 msgid "Send"
 msgstr "Отправить"
-
-#. Name of the plugin
-msgid "Webpush manage"
-msgstr "[НОЖ] Управление пушами"
-
-#. Description of the plugin
-msgid "Webpush and popup management plugin"
-msgstr "Управление попапом подписки и пушами"
 
 #. Author of the plugin
 msgid "Anton Lukin"

@@ -4,7 +4,7 @@ Plugin Name: [Knife] Push notifications
 Description: Push notifications and popup management plugin
 Author: Anton Lukin
 Author URI: https://lukin.me
-Version: 0.1
+Version: 0.2
 Text Domain: knife-push
 */
 
@@ -42,6 +42,7 @@ class Knife_Push {
 		add_action('add_meta_boxes', [$this, 'add_metabox']);
 		add_action('wp_ajax_knife_push', [$this, 'ajax_push']);
  		add_filter('plugin_row_meta', [$this, 'plugin_row'], 10, 4);
+		add_action('admin_enqueue_scripts', [$this, 'add_assets']);
 	}
 
 	public function plugin_textdomain() {
@@ -58,6 +59,13 @@ class Knife_Push {
 		if($default_style === true) {
 			wp_enqueue_style('knife-push', plugins_url("assets/knife-styles.css", __FILE__), [], null);
 		}
+	}
+
+	public function add_assets($hook) {
+		if('post.php' !== $hook)
+			return;
+
+		wp_enqueue_script('knife-push', plugins_url("assets/knife-push.js", __FILE__), ['jquery'], '0.2');
 	}
 
 	public function loader_tag($tag, $handle) {
@@ -148,38 +156,43 @@ class Knife_Push {
 
 	public function setting_render_appid() {
 		$options = get_option('knife_push_settings');
+		$default = isset($options['appid']) ? $options['appid'] : '';
 		?>
-		<input type="text" name="knife_push_settings[appid]" class="widefat" value="<?php echo $options['appid']; ?>">
+		<input type="text" name="knife_push_settings[appid]" class="widefat" value="<?php echo $default; ?>">
 		<?php
 
 	}
 
 	public function setting_render_rest() {
 		$options = get_option('knife_push_settings');
+ 		$default = isset($options['rest']) ? $options['rest'] : '';
 		?>
-		<input type="text" name="knife_push_settings[rest]" class="widefat" value="<?php echo $options['rest']; ?>">
+		<input type="text" name="knife_push_settings[rest]" class="widefat" value="<?php echo $default; ?>">
 		<?php
 	}
 
 
 	public function setting_render_segments() {
 		$options = get_option('knife_push_settings');
+  		$default = isset($options['segments']) ? $options['segments'] : '';
 		?>
-		<input type="text" name="knife_push_settings[segments]" placeholder="All" class="widefat" value="<?php echo $options['segments']; ?>">
+		<input type="text" name="knife_push_settings[segments]" placeholder="All" class="widefat" value="<?php echo $default; ?>">
 		<?php
 	}
 
 	public function setting_render_title() {
 		$options = get_option('knife_push_settings');
+  		$default = isset($options['title']) ? $options['title'] : '';
 		?>
-		<input type="text" name="knife_push_settings[title]" placeholder="My best site" class="widefat" value="<?php echo $options['title']; ?>">
+		<input type="text" name="knife_push_settings[title]" placeholder="My best site" class="widefat" value="<?php echo $default; ?>">
 		<?php
 	}
 
  	public function setting_render_utm() {
 		$options = get_option('knife_push_settings');
+  		$default = isset($options['utm']) ? $options['utm'] : '';
 		?>
-		<input type="text" name="knife_push_settings[utm]" placeholder="utm_source=site&utm_medium=webpush" class="widefat" value="<?php echo $options['utm']; ?>">
+		<input type="text" name="knife_push_settings[utm]" placeholder="utm_source=site&utm_medium=webpush" class="widefat" value="<?php echo $default; ?>">
 		<?php
 	}
 
