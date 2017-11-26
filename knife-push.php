@@ -57,7 +57,7 @@ class Knife_Push {
 		$default_style = apply_filters('knife-push_enqueue_style', true);
 
 		if($default_style === true) {
-			wp_enqueue_style('knife-push', plugins_url("assets/knife-styles.css", __FILE__), [], null);
+			wp_enqueue_style('knife-push', plugins_url("assets/knife-push.css", __FILE__), [], null);
 		}
 	}
 
