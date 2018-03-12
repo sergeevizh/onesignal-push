@@ -1,0 +1,155 @@
+.onesignal-push {
+	display: flex;
+	flex-flow: row-reverse nowrap;
+	align-items: center;
+	justify-content: space-between;
+
+	position: fixed;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	z-index: 3;
+	visibility: visible;
+
+	width: 25rem;
+	max-width: calc(100% - 2rem);
+	margin-right: auto;
+	margin-left: auto;
+	padding: 1rem;
+
+	background: white;
+
+	transform: translateY(-30%);
+	transition: .5s;
+
+	box-shadow: 0 0 1px 0 black;
+}
+
+.onesignal-push.onesignal-push--hide {
+	visibility: hidden;
+
+	transform: translateY(100%);
+}
+
+@media screen and (max-width: 479px) {
+	.onesignal-push.onesignal-push--hide {
+		flex-flow: column;
+		padding: .75rem;
+
+		transform: translateY(-10%);
+	}
+}
+
+
+.onesignal-push__button {
+    display: flex;
+    align-items: center;
+    outline: none;
+    cursor: pointer;
+    user-select: none;
+
+    padding: .625rem 1rem;
+
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .75px;
+    text-transform: uppercase;
+
+    color: white;
+    background-color: black;
+
+    transition: background .25s;
+
+    border-radius: 3px;
+}
+
+	.onesignal-push__button:hover {
+		background-color: #333;
+	}
+
+	.onesignal-push__button .icon {
+		pointer-events: none;
+
+		font-size: 1.25rem;
+		margin-right: .5rem;
+	}
+
+
+.onesignal-push__icon {
+	fill: white;
+	pointer-events: none;
+
+	width: 1.5rem;
+	height: 1.5rem;
+	margin-right: .5rem;
+}
+
+.onesignal-push__promo {
+	display: block;
+	user-select: none;
+
+	width: 50%;
+	margin: 0;
+	padding: 0;
+
+	font-size: 1rem;
+	font-weight: 500;
+	line-height: 1.25;
+	color: black;
+}
+
+@media screen and (max-width: 479px) {
+	.onesignal-push__promo {
+		width: 12rem;
+		max-width: 100%;
+		margin-bottom: .75rem;
+
+		text-align: center;
+	}
+}
+
+
+.onesignal-push__close {
+	position: absolute;
+	top: .5rem;
+	right: .5rem;
+	cursor: pointer;
+
+	width: .75rem;
+	height: .75rem;
+	margin: 0;
+	padding: 0;
+
+	opacity: .75;
+
+	text-indent: -9999rem;
+	background-color: transparent;
+
+	transition: opacity .25s;
+}
+
+    .onesignal-push__close:after,
+    .onesignal-push__close:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+
+      height: 100%;
+      width: 1px;
+
+      background-color: black;
+    }
+
+    .onesignal-push__close:after {
+	    transform: rotate(-45deg);
+    }
+
+    .onesignal-push__close:before {
+      transform: rotate(45deg);
+    }
+
+    .onesignal-push__close:hover {
+		opacity: 1;
+		background-color: transparent;
+    }

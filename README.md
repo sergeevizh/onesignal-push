@@ -9,19 +9,19 @@ Showing push sending form in admin side post pages.
 
 ### Installation ###
 
-1. Upload unpacked folder `knife-push` into plugins directory `/wp-content/plugins/`
+1. Upload unpacked folder `onesignal-push` into plugins directory `/wp-content/plugins/`
 2. Activate plugin in dashboard
 3. Update or add `manifest.json` file according OneSignal requirements
-4. Add keys on plugin settings page `/wp-admin/options-general.php?page=knife-push`
+4. Add keys on plugin settings page `/wp-admin/options-general.php?page=onesignal-push`
 5. Copy files from sdk folder to root directory or set rules in nginx this way:
 
 ```
 location = /OneSignalSDKUpdaterWorker.js {
-	root /srv/http/knife.media/plugins/knife-push/sdk;
+	root /srv/http/$host/plugins/onesignal-push/sdk;
 }
 
 location = /OneSignalSDKWorker.js {
-	root /srv/http/knife.media/plugins/knife-push/sdk;
+	root /srv/http/$host/plugins/onesignal-push/sdk;
 }
 ```
 
@@ -29,4 +29,4 @@ location = /OneSignalSDKWorker.js {
 
 You can ask your question or send pull request on Github
 
-https://github.com/antonlukin/knife-push/issues
+https://github.com/antonlukin/onesignal-push/issues
