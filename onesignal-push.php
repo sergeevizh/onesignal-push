@@ -16,27 +16,27 @@ new Onesignal_Push;
 
 class Onesignal_Push {
 
-    /**
-     * Post meta used for mark sent posts
-     */
-	private $meta   = '_onesignal-push';
+  /**
+   * Post meta used for mark sent posts
+   */
+  private $meta   = '_onesignal-push';
 
-    /**
-     * Settings option meta
-     */
-	private $option = 'onesignal-push-settings';
+  /**
+   * Settings option meta
+   */
+  private $option = 'onesignal-push-settings';
 
-    /**
-     * Plugin version used for static cache
-     */
-    private $static = '0.3.0';
+  /**
+   * Plugin version used for static cache
+   */
+  private $static = '0.3.0';
 
 
 	public function __construct() {
 		// plugin localization
 		add_action('plugins_loaded', [$this, 'plugin_textdomain']);
 
-        // init admin hooks
+    // init admin hooks
 		add_action('admin_init', [$this, 'admin_init']);
 
  		// init plugin settings
@@ -76,8 +76,8 @@ class Onesignal_Push {
 		// post metabox
 		add_action('add_meta_boxes', [$this, 'admin_metabox']);
 
-		// ajax handler
-        add_action('wp_ajax_onesignal_push', [$this, 'send_push']);
+    // ajax handler
+    add_action('wp_ajax_onesignal_push', [$this, 'send_push']);
 	}
 
 
@@ -111,7 +111,7 @@ class Onesignal_Push {
 		}
 
 		// filter allow to include another template
-    	$template = apply_filters('onesignal-push_footer', plugin_dir_path(__FILE__) . 'views/footer.php');
+    $template = apply_filters('onesignal-push_footer', plugin_dir_path(__FILE__) . 'views/footer.php');
 
  		include_once($template);
 	}
@@ -132,7 +132,7 @@ class Onesignal_Push {
 	}
 
 
-    /**
+  /**
 	 * Add link to settings page inside plugin row meta
 	 */
 	public function plugin_row($meta, $file) {
@@ -150,11 +150,11 @@ class Onesignal_Push {
 	}
 
 
-    /**
-     * Render settings page view
-     */
-    public function settings_page() {
-  		include_once(plugin_dir_path(__FILE__) . 'views/settings.php');
+  /**
+   * Render settings page view
+   */
+  public function settings_page() {
+  	include_once(plugin_dir_path(__FILE__) . 'views/settings.php');
 	}
 
 
@@ -308,21 +308,21 @@ class Onesignal_Push {
 
 		parse_str($opts['utm'], $args);
 
-		$fields = array(
+		$fields = [
 			'app_id' => $opts['appid'],
 
 			'included_segments' => explode(",", $opts['segments']),
 
 			'contents' => [
-				'en' => $_POST['message']
+				'en' => esc_html($_POST['message'])
 			],
 
 			'headings' => [
-				'en' => $_POST['title']
+				'en' => esc_html($_POST['title'])
 			],
 
 			'url' => add_query_arg($args, get_permalink($id))
-		);
+		];
 
 		$header = [
 			'Content-Type: application/json; charset=utf-8',
