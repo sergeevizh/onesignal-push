@@ -16,12 +16,10 @@ Showing push sending form in admin side post pages.
 5. Copy files from sdk folder to root directory or set rules in nginx this way:
 
 ```
-location = /OneSignalSDKUpdaterWorker.js {
-	root /srv/http/$host/plugins/onesignal-push/sdk;
-}
+location ~* ^/OneSignalSDK(.*?).js$ {
+    add_header Content-Type application/x-javascript;
 
-location = /OneSignalSDKWorker.js {
-	root /srv/http/$host/plugins/onesignal-push/sdk;
+    return 200 "importScripts('https://cdn.onesignal.com/sdks/OneSignalSDK.js');";
 }
 ```
 
